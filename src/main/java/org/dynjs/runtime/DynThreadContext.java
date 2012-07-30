@@ -59,6 +59,7 @@ public class DynThreadContext {
         put("Number", new DynObject() {{
         	setProperty("POSITIVE_INFINITY", Double.POSITIVE_INFINITY);
         	setProperty("NEGATIVE_INFINITY", Double.NEGATIVE_INFINITY);
+        	setProperty("NaN", Double.NaN);
         }});
         put("Array", new DynObject());
         put("Date", new DynObject());

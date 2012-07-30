@@ -18,6 +18,7 @@ public class IsNaN implements Function {
     }
     
 	static boolean isNaN(Object... arguments) {
+		if (arguments[0].equals(Double.NaN)) { return true; }
 		if (isNullOrBooleanOrWhiteSpace(arguments[0].toString().trim())) { return false; }
 		return (ParseInt.parseInt( arguments ).equals(Double.NaN));
 	}
