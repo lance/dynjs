@@ -1,6 +1,7 @@
 package org.dynjs.runtime.builtins;
 
 import org.dynjs.runtime.AbstractDynJSTestSupport;
+import org.dynjs.runtime.DynObject;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -38,5 +39,10 @@ public class LiteralsTest extends AbstractDynJSTestSupport {
     public void testStringValue() {
     	// Not sure why I have to test against 12.0
     	check("var result = 'Sunday in the Park with George'", "Sunday in the Park with George");
+    }
+
+    @Ignore
+    public void testNewObject() {
+    	check("var result = new Object()", new DynObject());
     }
 }
