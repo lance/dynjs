@@ -7,8 +7,7 @@ public class IsNaN implements Function {
     @Override
     public Object call(Object self, DynThreadContext context, Object... arguments) {
         if (arguments.length == 1) {
-            if (isNullOrBooleanOrWhiteSpace(arguments[0].toString().trim())) { return false; }
-            return (ParseInt.parseInt( arguments ).equals(Double.NaN));
+            return isNaN(arguments);
         }
         return DynThreadContext.UNDEFINED;
     }
@@ -18,7 +17,12 @@ public class IsNaN implements Function {
         return new String[]{"a"};
     }
     
-    private boolean isNullOrBooleanOrWhiteSpace(String value) {
+	static boolean isNaN(Object... arguments) {
+		if (isNullOrBooleanOrWhiteSpace(arguments[0].toString().trim())) { return false; }
+		return (ParseInt.parseInt( arguments ).equals(Double.NaN));
+	}
+
+    private static boolean isNullOrBooleanOrWhiteSpace(String value) {
         return (value.equals( "" ) || value.equals("null") || value.equals( "true" ) || value.equals( "false" ) );
     }
 }

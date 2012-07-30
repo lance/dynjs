@@ -21,6 +21,7 @@ import org.dynjs.api.Scope;
 import org.dynjs.compiler.DynJSCompiler;
 import org.dynjs.runtime.builtins.DefineProperty;
 import org.dynjs.runtime.builtins.Eval;
+import org.dynjs.runtime.builtins.IsFinite;
 import org.dynjs.runtime.builtins.ParseFloat;
 import org.dynjs.runtime.builtins.ParseInt;
 import org.dynjs.runtime.builtins.IsNaN;
@@ -55,7 +56,10 @@ public class DynThreadContext {
         put("Object", new DynObject() {{
             setProperty("defineProperty", new DefineProperty());
         }});
-        put("Number", new DynObject());
+        put("Number", new DynObject() {{
+        	setProperty("POSITIVE_INFINITY", Double.POSITIVE_INFINITY);
+        	setProperty("NEGATIVE_INFINITY", Double.NEGATIVE_INFINITY);
+        }});
         put("Array", new DynObject());
         put("Date", new DynObject());
         put("String", new DynObject());
@@ -69,6 +73,7 @@ public class DynThreadContext {
         put("parseFloat", DynJSCompiler.wrapFunction(get("Function"), new ParseFloat()));
         put("parseInt", DynJSCompiler.wrapFunction(get("Function"), new ParseInt()));
         put("isNaN", DynJSCompiler.wrapFunction( get("Function"), new IsNaN()));
+        put("isFinite", DynJSCompiler.wrapFunction( get("Function"), new IsFinite()));
         put("Math", new DynObject());
     }};
 
